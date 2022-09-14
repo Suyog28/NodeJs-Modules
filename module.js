@@ -11,7 +11,7 @@ auth.login("Chaitali"); */
 
 //Core Module
 
-const path = require("path");
+//const path = require("path");
 
 //dirname- It will give path of directory
 // console.log("Filename:", path.dirname(__dirname));
@@ -30,7 +30,7 @@ const path = require("path");
 
 //File system
 
-const fs = require("fs");
+//const fs = require("fs");
 
 //Make Directory
 /* fs.mkdir(path.join(__dirname, "/test"), (err) => {
@@ -90,7 +90,7 @@ const fs = require("fs");
 
 //OS module
 
-const os = require("os");
+//const os = require("os");
 
 // console.log("OS type:", os.type());
 // console.log("Platform:", os.platform());
@@ -103,3 +103,18 @@ const os = require("os");
 // console.log("Total Uptime", os.uptime());
 
 //Event Module
+
+const Emitter = require("events");
+
+class Auth extends Emitter {
+  register(username) {
+    console.log("Successfully Register:" + username);
+    this.emit("Registered", username);
+  }
+}
+
+const auth = new Auth();
+auth.on("Registered", (data) => {
+  console.log(`Email has been sent to ${data}`);
+});
+auth.register("Suyog");
